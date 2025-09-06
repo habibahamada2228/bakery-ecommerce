@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Art - Exquisite Pastry Art</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fff0f5 0%, #fff 50%, #fff0f5 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animated background elements */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 182, 193, 0.15);
+            animation: float 8s infinite ease-in-out;
+            z-index: -1;
+        }
+        
+        .circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+        
+        .circle:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 30%;
+            right: 10%;
+            background: rgba(255, 105, 180, 0.1);
+            animation-delay: 1s;
+        }
+        
+        .circle:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 10%;
+            left: 15%;
+            background: rgba(255, 20, 147, 0.1);
+            animation-delay: 2s;
+        }
+        
+        .line {
+            position: absolute;
+            background: rgba(255, 105, 180, 0.1);
+            animation: grow 12s infinite ease-in-out;
+            z-index: -1;
+        }
+        
+        .line:nth-child(4) {
+            width: 2px;
+            height: 0;
+            top: 0;
+            left: 20%;
+            animation-delay: 0.5s;
+        }
+        
+        .line:nth-child(5) {
+            width: 3px;
+            height: 0;
+            top: 0;
+            right: 30%;
+            background: rgba(255, 182, 193, 0.2);
+            animation-delay: 2s;
+        }
+        
+        .triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            opacity: 0.1;
+            animation: rotate 15s infinite linear;
+            z-index: -1;
+        }
+        
+        .triangle:nth-child(6) {
+            border-width: 0 50px 100px 50px;
+            border-color: transparent transparent #ff69b4 transparent;
+            top: 40%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .triangle:nth-child(7) {
+            border-width: 0 70px 120px 70px;
+            border-color: transparent transparent #ff1493 transparent;
+            bottom: 20%;
+            right: 20%;
+            opacity: 0.08;
+            animation-delay: 1s;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(to right, #ff6ba9, #ff9ec7);
+            padding: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .cake-icon {
+            width: 60px;
+            height: 50px;
+            background-color: #ff9ec7;
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            margin-right: 15px;
+        }
+        
+        .cake-icon:before {
+            content: "";
+            position: absolute;
+            width: 70px;
+            height: 15px;
+            background-color: #ff6ba9;
+            border-radius: 50%;
+            bottom: -7px;
+            left: -5px;
+        }
+        
+        .cake-icon:after {
+            content: "🎨";
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 20px;
+            transform: rotate(15deg);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            letter-spacing: -1px;
+        }
+        
+        .logo-text span {
+            font-size: 16px;
+            color: #fff;
+            margin-top: -5px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #ffebf3;
+            text-decoration: underline;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 107, 169, 0.2), rgba(255, 158, 199, 0.2)), rgba(255, 182, 193, 0.3);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            margin: 20px;
+            border-radius: 15px;
+        }
+        
+        .hero-content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            color: #ff6ba9;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hero-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .cta-button {
+            background: #ff6ba9;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #ff4a97;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #ff6ba9;
+            font-size: 32px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #ff9ec7, #ff6ba9, #ff9ec7);
+            border-radius: 3px;
+        }
+        
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 220px;
+            background-color: #ffebf3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ff6ba9;
+            font-size: 50px;
+            position: relative;
+        }
+        
+        .gallery-info {
+            padding: 20px;
+        }
+        
+        .gallery-info h3 {
+            color: #ff6ba9;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+        
+        .gallery-info p {
+            color: #777;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        .price {
+            color: #ff6ba9;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        /* About Section */
+        .about {
+            background: linear-gradient(to bottom, #fff, #fffaf5);
+            padding: 60px 0;
+            margin-top: 60px;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+            font-size: 150px;
+            color: #ff9ec7;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #ff6ba9, #ff9ec7);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+        
+        .footer-section h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: white;
+        }
+        
+        .footer-section p, .footer-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #ffebf3;
+            padding-left: 5px;
+        }
+        
+        .footer-section i {
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 22px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: #ffebf3;
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+        
+        @keyframes grow {
+            0%, 100% { height: 0; }
+            50% { height: 100%; }
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fall {
+            0% { 
+                transform: translateY(-100px) rotate(0deg); 
+                opacity: 0;
+            }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { 
+                transform: translateY(100vh) rotate(360deg); 
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            nav {
+                flex-wrap: wrap;
+            }
+            
+            nav a {
+                margin: 5px 10px;
+            }
+            
+            .hero-content {
+                padding: 30px 20px;
+            }
+            
+            .hero-content h2 {
+                font-size: 28px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-text h1 {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 26px;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .snowflake {
+            position: fixed;
+            color: rgba(255, 105, 180, 0.3);
+            z-index: -1;
+            pointer-events: none;
+            animation: fall 10s infinite linear;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background Elements -->
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="triangle"></div>
+    <div class="triangle"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <div class="cake-icon"></div>
+            <div class="logo-text">
+                <h1>Cake Art</h1>
+                <span>Exquisite Pastry Art</span>
+            </div>
+        </div>
+        
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">Gallery</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Beautiful Pastries for Special Moments</h2>
+            <p>We offer a sophisticated selection of cakes, cupcakes, and pastries made by the most skilled pastry chefs.</p>
+            <button class="cta-button">Order Now</button>
+        </div>
+    </section>
+
+    <!-- Products Gallery -->
+    <section class="container">
+        <h2 class="section-title">Our Pastries Gallery</h2>
+        
+        <div class="gallery">
+            <!-- Birthday Cake -->
+            <div class="gallery-item">
+                <div class="gallery-img">
+                    <i class="fas fa-birthday-cake"></i>
+                </div>
+                <div class="gallery-info">
+                    <h3>Birthday Cake</h3>
+                    <p>Luxurious cake decorated with cream and fresh fruits, perfect for your special occasions.</p>
+                    <div class="price">Price: 250 EGP</div>
+                </div>
+            </div>
+            
+            <!-- Cupcake -->
+            <div class="gallery-item">
+                <div class="gallery-img">
+                    <i class="fas fa-cupcake"></i>
+                </div>
+                <div class="gallery-info">
+                    <h3>Strawberry Cupcake</h3>
+                    <p>Soft cupcake filled with strawberry cream and decorated with amazing designs.</p>
+                    <div class="price">Price: 30 EGP per piece</div>
+                </div>
+            </div>
+            
+            <!-- Sugar Cake -->
+            <div class="gallery-item">
+                <div class="gallery-img">
+                    <i class="fas fa-candy-cane"></i>
+                </div>
+                <div class="gallery-info">
+                    <h3>Sugar Cake</h3>
+                    <p>Artistic masterpiece of handmade sugar cakes with stunning designs.</p>
+                    <div class="price">Price: 300 EGP</div>
+                </div>
+            </div>
+            
+            <!-- Chocolate Bar -->
+            <div class="gallery-item">
+                <div class="gallery-img">
+                    <i class="fas fa-cookie"></i>
+                </div>
+                <div class="gallery-info">
+                    <h3>Chocolate Bar</h3>
+                    <p>Rich chocolate bars with additions of nuts and dried fruits.</p>
+                    <div class="price">Price: 80 EGP</div>
+                </div>
+            </div>
+            
+            <!-- Chocolate Cake -->
+            <div class="gallery-item">
+                <div class="gallery-img">
+                    <i class="fas fa-cheese"></i>
+                </div>
+                <div class="gallery-info">
+                    <h3>Chocolate Cake</h3>
+                    <p>Rich and soft chocolate cake with layers of cream and melted chocolate.</p>
+                    <div class="price">Price: 180 EGP</div>
+                </div>
+            </div>
+            
+            <!-- Donuts -->
+            <div class="gallery-item">
+                <div class="gallery-img">
+                    <i class="fas fa-donut"></i>
+                </div>
+                <div class="gallery-info">
+                    <h3>Colorful Donuts</h3>
+                    <p>Fresh donuts covered with colored icing and small sweets.</p>
+                    <div class="price">Price: 25 EGP per piece</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>We are Cake Art, specializing in making the most beautiful and delicious pastries since 2010. We offer a wide range of cakes, cupcakes, and pastries with high quality and irresistible taste.</p>
+                    <p>All our products are made from the best fresh ingredients without any preservatives. We guarantee you taste quality and wonderful design in every sweet piece you order from us.</p>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-store"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Cake Art</h3>
+                <p>Exquisite Pastry Art</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Pastry Street, Cairo</p>
+                <p><i class="fas fa-phone"></i> 0123456789</p>
+                <p><i class="fas fa-envelope"></i> info@cakeart.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>All Rights Reserved &copy; 2023 Cake Art</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add decorative falling elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            const symbols = ['❀', '✻', '✼', '❁', '✾', '❃'];
+            
+            for (let i = 0; i < 20; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDelay = Math.random() * 10 + 's';
+                snowflake.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                body.appendChild(snowflake);
+            }
+            
+            // Smooth scrolling for links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
